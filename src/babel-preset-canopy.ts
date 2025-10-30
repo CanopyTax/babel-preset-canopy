@@ -15,7 +15,7 @@ module.exports = (api: BabelCore.ConfigAPI): BabelCore.TransformOptions => {
     [
       "@babel/preset-env",
       {
-        bugfixes: true, // limit transforms to known bugfixes (based on browserlist targets)
+        bugfixes: true, // limit transforms to known bugfixes (based on browserslist targets)
         modules: false, // this option is misleadingly named; setting to false preserves ES modules
         shippedProposals: false, // only stable features
       },
