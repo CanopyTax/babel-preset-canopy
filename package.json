@@ -1,0 +1,30 @@
+{
+  "name": "babel-preset-canopy",
+  "version": "1.0.0",
+  "description": "Some defaults for babel preset at canopy",
+  "main": "build/babel-preset-canopy.js",
+  "types": "build/babel-preset-canopy.d.ts",
+  "repository": "git@github.com:CanopyTax/babel-preset-canopy.git",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "babel-plugin-webpack-import-ignore": "portal:/Users/tonylefler/canopy/babel-plugin-webpack-import-ignore"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@types/babel__core": "^7.20.5",
+    "@types/node": "^24.9.2",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@babel/core": ">=7"
+  },
+  "resolutions": {
+    "babel-plugin-webpack-import-ignore": "portal:/Users/tonylefler/canopy/babel-plugin-webpack-import-ignore"
+  }
+}
