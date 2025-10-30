@@ -64,7 +64,7 @@ The preset automatically detects the environment:
 
 ## TypeScript Configuration
 
-This preset handles TypeScript transpilation through Babel, but you should still maintain a `tsconfig.json` for type checking which should be ran separately:
+This preset handles TypeScript transpilation through Babel, but you should still maintain a `tsconfig.json` for type checking which should be run separately:
 
 ```bash
 yarn tsc --noEmit
