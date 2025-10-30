@@ -5,14 +5,19 @@
   "main": "build/babel-preset-canopy.js",
   "types": "build/babel-preset-canopy.d.ts",
   "repository": "git@github.com:CanopyTax/babel-preset-canopy.git",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "babel-plugin-webpack-import-ignore": "portal:/Users/tonylefler/canopy/babel-plugin-webpack-import-ignore"
+    "@babel/core": ">=7",
+    "@babel/plugin-transform-runtime": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
+    "babel-plugin-webpack-import-ignore": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -20,11 +25,5 @@
     "@types/node": "^24.9.2",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3"
-  },
-  "peerDependencies": {
-    "@babel/core": ">=7"
-  },
-  "resolutions": {
-    "babel-plugin-webpack-import-ignore": "portal:/Users/tonylefler/canopy/babel-plugin-webpack-import-ignore"
   }
 }

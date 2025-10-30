@@ -11,6 +11,10 @@ A shared Babel preset for Canopy projects that provides consistent transpilation
 - **Targeted Transpilation** - Only applies necessary transforms based on browserslist targets
 - **Webpack Import Ignoring** - Handles Canopy-specific import patterns
 
+## Babel Version
+
+Babel core v7 comes bundled, so ensure your project uses Babel 7.x plugins and presets.
+
 ## Installation
 
 ```bash
@@ -46,13 +50,13 @@ module.exports = {
    - Reduces code duplication by reusing Babel helpers
    - Enables regenerator for async/await support
    - Uses ES modules for better tree-shaking
+   - Requires `@babel/runtime` to be available (provided via import map in Canopy)
 2. **babel-plugin-webpack-import-ignore** - Canopy-specific import handling
    - Ignores imports matching `@canopytax/` pattern during webpack processing
 
-
 ## Browser Support
 
-Browser targets should be defined in your project's `browserslist` configuration (`browserslist-config-canopy`). The preset will automatically apply only the necessary transforms based on your targets.
+Browser targets are defined by `browserslist-config-canopy`. The preset automatically applies only the necessary transforms based on your targets.
 
 
 ## Development vs Production
