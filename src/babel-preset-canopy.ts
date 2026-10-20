@@ -3,6 +3,16 @@ import type * as BabelCore from "@babel/core";
 module.exports = (api: BabelCore.ConfigAPI): BabelCore.TransformOptions => {
   api.assertVersion("^7.0.0");
 
+  // Jest in its default mode cannot load ES modules and does not transform node_modules, so it
+  // needs CommonJS output and the CommonJS runtime helpers. Keyed on babel-jest by name so no
+  // bundler can ever get CommonJS: that build still succeeds, but every lazy import() of another
+  // service becomes a static import, loaded up front. Jest's native ESM mode reports
+  // supportsStaticESM: true and keeps ES modules.
+  const commonjs = api.caller(
+    (caller) =>
+      caller?.name === "babel-jest" && caller.supportsStaticESM === false,
+  );
+
   // Referenced by absolute path, not by name: Babel resolves bare preset and
   // plugin names relative to the consuming project's babel config, not to this
   // package. Yarn may nest these under this package rather than hoisting them —
@@ -23,7 +33,7 @@ module.exports = (api: BabelCore.ConfigAPI): BabelCore.TransformOptions => {
       require.resolve("@babel/preset-env"),
       {
         bugfixes: true, // limit transforms to known bugfixes (based on browserslist targets)
-        modules: false, // this option is misleadingly named; setting to false preserves ES modules
+        modules: commonjs ? "commonjs" : false, // false preserves ES modules
         shippedProposals: false, // only stable features
       },
     ],
@@ -35,7 +45,7 @@ module.exports = (api: BabelCore.ConfigAPI): BabelCore.TransformOptions => {
       {
         helpers: true,
         regenerator: true,
-        useESModules: true,
+        useESModules: !commonjs,
       },
     ],
     [

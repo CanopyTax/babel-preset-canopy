@@ -42,6 +42,8 @@ module.exports = {
 3. **@babel/preset-env** - Smart JavaScript transpilation
    - `bugfixes: true` - Applies minimal transforms for known issues
    - `modules: false` - Preserves ES modules for bundler optimization
+   - Under Jest's default (non-ESM) mode, emits CommonJS instead, so test runs need no `env.test`
+     override. Only babel-jest gets this; every other caller keeps ES modules
    - `shippedProposals: false` - Only stable language features
 
 ### Plugins
@@ -49,7 +51,7 @@ module.exports = {
 1. **@babel/plugin-transform-runtime** - Runtime helper optimization
    - Reduces code duplication by reusing Babel helpers
    - Enables regenerator for async/await support
-   - Uses ES modules for better tree-shaking
+   - Uses ES module helpers for better tree-shaking, or the CommonJS helpers under Jest
    - Requires `@babel/runtime` to be available (provided via import map in Canopy)
 2. **babel-plugin-webpack-import-ignore** - Canopy-specific import handling
    - Ignores imports matching `@canopytax/` pattern during webpack processing
